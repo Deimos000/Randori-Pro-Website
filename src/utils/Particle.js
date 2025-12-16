@@ -65,15 +65,15 @@ export class Particle {
             let baseSpeed = maxSpeed;
 
             // Boost speed if distance is large.
-            // distance / 40 means it tries to arrive in ~40 frames (~0.7s at 60fps)
-            let limitSpeed = Math.max(baseSpeed, distance / 40);
+            // distance / 2 means it tries to arrive in ~2 frames (extremely snappy)
+            let limitSpeed = Math.max(baseSpeed, distance / 2);
 
             // Allow very high speeds
-            let finalMaxSpeed = Math.min(limitSpeed, 100);
+            let finalMaxSpeed = Math.min(limitSpeed, 150);
 
             let targetSpeed = finalMaxSpeed;
             // Sharper slowdown for snapping effect
-            const slowDownRadius = 30;
+            const slowDownRadius = 20;
             if (distance < slowDownRadius) {
                 targetSpeed = (distance / slowDownRadius) * finalMaxSpeed;
             }
@@ -90,8 +90,8 @@ export class Particle {
             const steerX = targetVx - this.vx;
             const steerY = targetVy - this.vy;
 
-            // FORCE INCREASE: Set to 1.5 as requested
-            const maxForce = 1.5;
+            // FORCE INCREASE: Set to 5.0 for very fast reaction
+            const maxForce = 5.0;
 
             // Apply steering
             this.ax += Math.max(-maxForce, Math.min(maxForce, steerX));

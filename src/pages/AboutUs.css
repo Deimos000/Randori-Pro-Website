@@ -130,7 +130,11 @@
     transform: scale(1.02);
 }
 
-
+/* TEAM GRID STYLING */
+.team-container {
+    max-width: 1200px;
+    /* Consistent max-width for all cards */
+}
 
 .team-grid {
     display: grid;

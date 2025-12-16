@@ -7,38 +7,9 @@ const ParticleVisualizer = ({ text = "", width, height, textPosition = { x: 50, 
     const particlesRef = useRef([]);
     const animationFrameRef = useRef(null);
     const mouseRef = useRef({ x: 9999, y: 9999 });
-    const isExplodedRef = useRef(isExploded);
-    useEffect(() => { isExplodedRef.current = isExploded; }, [isExploded]);
 
     const [targetCoords, setTargetCoords] = useState([]);
     const [mode, setMode] = useState('FORMING');
-
-    // Handle External Explosion Trigger (e.g. Scroll hiding)
-    // Handle External Explosion Trigger (e.g. Scroll hiding)
-    useEffect(() => {
-        if (isExploded) {
-            setMode('WANDER');
-            if (particlesRef.current.length > 0) {
-                particlesRef.current.forEach(p => {
-                    const angle = Math.random() * Math.PI * 2;
-                    // BIG EXPLOSION on Hide
-                    const force = Math.random() * 40 + 10;
-                    p.vx += Math.cos(angle) * force;
-                    p.vy += Math.sin(angle) * force;
-                });
-            }
-        } else {
-            // Directly assemble when reappearing
-            setMode('FORMING');
-        }
-    }, [isExploded]);
-
-    // ... (config object omitted for brevity if not changing, but strict replace needs context) ... 
-    // Actually I can just target the effects. I need to be careful with line numbers.
-    // I will replace both hooks in one go if they are contiguous, or just target carefully.
-    // They are separated by `const config = ...`. I'll do two replaces or one big one.
-    // Let's do the isExploded effect first.
-
 
     const config = {
         speedMultiplier: 5,
@@ -114,6 +85,26 @@ const ParticleVisualizer = ({ text = "", width, height, textPosition = { x: 50, 
         return () => clearTimeout(timer);
     }, [width, height, precomputeTexts, textPosition]);
 
+    // --- EXPLOSION & REASSEMBLY TOGGLE ---
+    useEffect(() => {
+        if (isExploded) {
+            setMode('WANDER');
+            // EXPLODE!
+            if (particlesRef.current.length > 0) {
+                particlesRef.current.forEach(p => {
+                    // Random strong velocity
+                    const angle = Math.random() * Math.PI * 2;
+                    const force = Math.random() * 20 + 5; // Moderate kick
+                    p.vx = Math.cos(angle) * force;
+                    p.vy = Math.sin(angle) * force;
+                });
+            }
+        } else {
+            setMode('FORMING');
+            formingTimeRef.current = Date.now();
+        }
+    }, [isExploded]);
+
     // --- TEXT CHANGE EFFECT ---
     useEffect(() => {
         if (!width || !height) return;
@@ -129,19 +120,30 @@ const ParticleVisualizer = ({ text = "", width, height, textPosition = { x: 50, 
             coordsCache.current[cacheKey] = newCoords;
         }
 
-        // 2. Handle Transition
-        // Always update targets immediately.
+        // 2. Set targets immediately
         setTargetCoords(newCoords);
-        formingTimeRef.current = Date.now();
 
-        // If we are NOT exploded (visible), ensure we are forming the new text.
-        // If we ARE exploded, we stay in WANDER mode (handled by the other effect),
-        // but the particles will now seek these new targets once mode switches back to FORMING.
-        if (!isExplodedRef.current) {
-            setMode('FORMING');
+        // If NOT exploded, we might want a small "puff" effect when text changes,
+        // but the user wants "Explosion only when hidden".
+        // So we just re-target. If not hidden/exploded, they will fly to new text immediately.
+        // We can add a tiny kick if we want animation between texts, but request was specific to hide/show.
+        // Let's add that tiny kick IF not already exploded, just for transition flair.
+        if (!isExploded && particlesRef.current.length > 0) {
+            // Optional: Tiny disturbance so they don't just "slide"
+            /*
+           particlesRef.current.forEach(p => {
+               p.vx += (Math.random() - 0.5) * 5;
+               p.vy += (Math.random() - 0.5) * 5;
+           });
+           */
         }
-    }, [text, width, height, textPosition]);
 
+        if (!isExploded) {
+            setMode('FORMING');
+            formingTimeRef.current = Date.now();
+        }
+
+    }, [text, width, height, textPosition]); // Removed isExploded from deps to avoid double-trigger
 
     // --- ANIMATION ---
     useEffect(() => {
@@ -159,6 +161,7 @@ const ParticleVisualizer = ({ text = "", width, height, textPosition = { x: 50, 
                 // Dark Red Shades: Hue around 0/360, Dark Lightness
                 const hue = Math.random() < 0.5 ? 350 + Math.random() * 10 : Math.random() * 10;
                 const lightness = 30 + Math.random() * 30; // 30-60% lightness
+
 
                 particlesRef.current.push(new Particle(
                     Math.random() * width,

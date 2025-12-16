@@ -60,48 +60,56 @@ const AboutUs = () => {
         }
     };
 
-    const [isParticlesExploded, setIsParticlesExploded] = useState(false);
+    const [isExploded, setIsExploded] = useState(false);
+    const particleHeaderRef = useRef(null);
 
+    // Scroll Logic to detect if particles are behind a card
     useEffect(() => {
         const handleScroll = () => {
-            if (!sectionsRef.current) return;
+            if (!particleHeaderRef.current) return;
 
-            const textY = window.innerHeight * 0.3; // Text is at 30% height
-            // We define a small "hitbox" for the text
-            const textTop = textY - 50;
-            const textBottom = textY + 50;
+            // Define the "Particle Zone" - roughly where the text is.
+            // Based on properties passed to ParticleHero: textPosition is { x: 50, y: 30 }
+            // So it's at 30% of the viewport height.
+            const particleZoneY = window.innerHeight * 0.3;
+            const particleZoneHeight = 100; // Approx height of text
 
-            const isCovered = sectionsRef.current.some(section => {
-                if (!section) return false;
+            let covered = false;
+
+            sectionsRef.current.forEach(section => {
+                if (!section) return;
                 const card = section.querySelector('.glass-card');
-                if (!card) return false;
-
-                const rect = card.getBoundingClientRect();
-                // Check if card overlaps the text zone
-                return (rect.top < textBottom && rect.bottom > textTop);
+                if (card) {
+                    const rect = card.getBoundingClientRect();
+                    // Check if the card overlaps with the particle zone
+                    // Card top is above the bottom of zone AND Card bottom is below the top of zone
+                    if (rect.top < (particleZoneY + particleZoneHeight) && rect.bottom > particleZoneY) {
+                        covered = true;
+                    }
+                }
             });
 
-            setIsParticlesExploded(isCovered);
+            setIsExploded(covered);
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('scroll', handleScroll);
         // Initial check
         handleScroll();
 
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [windowSize]); // Re-calc on resize
 
     return (
         <div className="about-us-page">
             {/* Fixed Particle Header Background */}
-            <div className="particle-header-fixed">
+            <div className="particle-header-fixed" ref={particleHeaderRef}>
                 <ParticleVisualizer
                     text={currentHeader}
                     width={windowSize.width}
                     height={windowSize.height}
                     textPosition={{ x: 50, y: 30 }} // Position text in the upper third
                     precomputeTexts={["ÜBER UNS", "UNSERE PRINZIPIEN", "UNSER TEAM", "DEINE VORTEILE"]}
-                    isExploded={isParticlesExploded}
+                    isExploded={isExploded}
                 />
             </div>
 
