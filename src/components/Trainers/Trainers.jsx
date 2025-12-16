@@ -7,7 +7,7 @@ import './Trainers.css';
 // ==========================================
 // VITE AUTOMATIC IMAGE LOADER
 // ==========================================
-const imagesGlob = import.meta.glob('./images/*.{png,jpg,jpeg,svg,webp}', {
+const imagesGlob = import.meta.glob('./Images/*.{png,jpg,jpeg,svg,webp}', {
   eager: true,
   as: 'url'
 });
