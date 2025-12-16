@@ -1,0 +1,268 @@
+/* --- 1. BASE SETTINGS --- */
+:root {
+  --navbar-height: 80px;
+  --logo-height: 45px;
+  /* Adjust height of your logo here */
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  z-index: 100;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar-container {
+  max-width: var(--max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- 2. LOGO IMAGE --- */
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: var(--logo-height);
+  width: auto;
+  object-fit: contain;
+  /* Ensure it looks good on both transparent and white backgrounds */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* --- 3. STATES: TRANSPARENT VS SCROLLED --- */
+.navbar.transparent {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Elements color in transparent mode */
+.navbar.transparent .nav-link,
+.navbar.transparent .lang-btn-desktop,
+.navbar.transparent .open-btn {
+  color: #ffffff;
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Elements color in scrolled mode */
+.navbar.scrolled .nav-link {
+  color: #1a1a1a;
+}
+
+.navbar.scrolled .nav-link:hover {
+  color: var(--color-primary, #0056b3);
+}
+
+.navbar.scrolled .lang-btn-desktop {
+  color: #1a1a1a;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar.scrolled .open-btn {
+  color: #1a1a1a;
+}
+
+.active-indicator {
+  background-color: var(--color-accent, #ff4757);
+}
+
+/* --- 4. MOBILE TOGGLE & BREAKPOINTS --- */
+.mobile-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Desktop Links are hidden by default (mobile first) */
+.desktop-links {
+  display: none;
+}
+
+/* --- DESKTOP VIEW (Min Width 768px) --- */
+@media (min-width: 768px) {
+
+  /* HIDE THE HAMBURGER ON DESKTOP */
+  .mobile-toggle-wrapper,
+  .mobile-toggle.open-btn {
+    display: none !important;
+  }
+
+  /* SHOW DESKTOP LINKS */
+  .desktop-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .nav-link-wrapper {
+    position: relative;
+    text-decoration: none;
+    padding: 26px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link {
+    position: relative;
+    z-index: 2;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .active-text {
+    font-weight: 600;
+  }
+
+  .active-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 4px;
+    z-index: 1;
+  }
+
+  .lang-btn-desktop {
+    background: transparent;
+    border: 1px solid currentColor;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-left: 20px;
+  }
+}
+
+/* --- 5. MOBILE FULLSCREEN MENU --- */
+.mobile-menu-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--color-primary, #0056b3), #000000);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: #ffffff !important;
+  z-index: 202;
+}
+
+.mobile-menu-content {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.mobile-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mobile-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 2.2rem;
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-link-item:hover,
+.mobile-link-item.active {
+  color: #ffffff;
+  border-bottom-color: var(--color-accent, #ff4757);
+}
+
+.link-arrow {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s;
+  color: var(--color-accent, #ff4757);
+}
+
+.mobile-link-item:hover .link-arrow,
+.mobile-link-item.active .link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-divider {
+  height: 30px;
+}
+
+.mobile-lang-btn {
+  background: rgba(255, 255, 255, 0.15);
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+/* --- 6. CONTACT PAGE MODE --- */
+.navbar.contact-mode {
+  background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent));
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar.contact-mode .nav-link,
+.navbar.contact-mode .lang-btn-desktop,
+.navbar.contact-mode .open-btn {
+  color: #ffffff;
+}
+
+.navbar.contact-mode .lang-btn-desktop {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar.contact-mode .active-indicator {
+  background-color: #ffffff;
+}

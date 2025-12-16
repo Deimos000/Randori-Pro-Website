@@ -1,0 +1,21 @@
+:root {
+  /* --- NEW BRAND PALETTE --- */
+  --color-brand-darkest: #3E0703; /* Text, Deep Backgrounds */
+  --color-brand-primary: #660B05; /* Main Brand Color, Headers */
+  --color-brand-accent:  #8C1007; /* Hover states, Alerts, Pulsing */
+  --color-brand-cream:   #FFF0C4; /* Highlights, Cards */
+  
+  /* Generated Lighter Cream for general backgrounds (Readability) */
+  --color-brand-cream-light: #FFFCF5; 
+
+  /* Layout & Spacing */
+  --radius-lg: 24px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-card: 0 20px 40px -10px rgba(62, 7, 3, 0.15);
+  --shadow-hover: 0 15px 30px -5px rgba(140, 16, 7, 0.2);
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}

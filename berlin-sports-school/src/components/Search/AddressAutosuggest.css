@@ -1,0 +1,98 @@
+/* AddressAutosuggest.css */
+
+/* 1. Container: Acts as the anchor for the dropdown */
+.address-search-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  z-index: 2000; /* Ensure the whole container sits above map controls if needed */
+}
+
+/* 2. The Input Field */
+.address-input {
+  width: 100%;
+  padding: 12px 40px 12px 12px; /* Right padding makes room for the 'X' button */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px; /* 16px prevents zooming on iPhone */
+  box-sizing: border-box; /* Ensures padding doesn't expand width */
+  transition: border-color 0.2s;
+  background-color: white;
+}
+
+.address-input:focus {
+  outline: none;
+  border-color: #3388ff; /* Leaflet blue color for consistency */
+  box-shadow: 0 0 0 3px rgba(51, 136, 255, 0.2);
+}
+
+/* 3. The Dropdown List */
+.suggestions-list {
+  position: absolute;
+  top: 100%; /* Puts it directly below the input */
+  left: 0;
+  right: 0;
+  
+  /* CRITICAL: Must be higher than Leaflet Map (usually 400-1000) */
+  z-index: 3000; 
+  
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  
+  /* Reset default list styles */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  /* Scroll handling */
+  max-height: 250px;
+  overflow-y: auto;
+  
+  /* Shadow for depth */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* 4. Individual List Items */
+.suggestions-list li {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.suggestions-list li:last-child {
+  border-bottom: none;
+}
+
+.suggestions-list li:hover {
+  background-color: #f7f9fa;
+  color: #000;
+}
+
+/* 5. The Clear (X) Button */
+/* (This styles the button if you remove the inline styles in React) */
+.clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #999;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.clear-btn:hover {
+  color: #333;
+}

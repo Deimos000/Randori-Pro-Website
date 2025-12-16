@@ -1,0 +1,189 @@
+/* --- MAIN CONTAINER --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 85vh; 
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* --- BACKGROUND LAYERS --- */
+.hero-background {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: breatheZoom 25s infinite alternate ease-in-out;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(62, 7, 3, 0.3) 0%,
+    rgba(62, 7, 3, 0.6) 50%,
+    var(--color-brand-darkest, #1a0201) 100%
+  );
+  z-index: 2;
+  backdrop-filter: blur(1px);
+}
+
+/* --- CONTENT LAYER --- */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- LOGO IMAGE STYLES --- */
+.hero-logo-container {
+  margin-bottom: 25px;
+  
+  /* Animation */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.hero-logo-img {
+  /* Adjust this width to match your specific image file size */
+  width: 600px; 
+  max-width: 90vw; /* Ensures it never overflows on mobile */
+  height: auto;
+  display: block;
+  
+  /* Adds a shadow behind the image (better than box-shadow for transparent PNGs) */
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+
+/* --- DIVIDER & TEXT --- */
+.hero-divider {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-accent, #8C1007), transparent);
+  margin-bottom: 30px;
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0);
+  animation: growWidth 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+.hero-sub {
+  font-family: sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 50px;
+  max-width: 750px;
+  font-weight: 300;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.8s;
+}
+
+/* --- BUTTONS --- */
+.hero-actions {
+  display: flex;
+  gap: 25px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 1.0s;
+}
+
+.btn-hero {
+  padding: 18px 45px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  min-width: 200px;
+}
+
+.btn-hero.primary {
+  background-color: var(--color-brand-primary, #660B05);
+  color: white;
+  border: 1px solid var(--color-brand-accent, #8C1007);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.btn-hero.primary:hover {
+  background-color: var(--color-brand-accent, #8C1007);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(140, 16, 7, 0.5);
+}
+
+.btn-hero.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.btn-hero.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  transform: translateY(-4px);
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+@keyframes breatheZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes growWidth {
+  from { opacity: 0; transform: scaleX(0); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  /* Smaller logo on mobile */
+  .hero-logo-img {
+    width: 300px;
+  }
+  
+  .hero-sub {
+    font-size: 1.15rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+  
+  .btn-hero {
+    width: 100%;
+  }
+}

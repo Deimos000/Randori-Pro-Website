@@ -1,0 +1,230 @@
+/* src/pages/Contact.css */
+.contact-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-brand-cream-light);
+    /* Warm background to contrast with white cards */
+    color: var(--color-brand-darkest);
+    padding-top: 80px;
+    /* Navbar spacer */
+}
+
+.contact-hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent));
+    color: white;
+    /* Explicitly white text on dark brand gradient */
+    margin-bottom: 3rem;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(62, 7, 3, 0.2);
+}
+
+.contact-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-brand-cream);
+    /* Cream title for premium look */
+}
+
+.contact-hero p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--color-brand-cream-light);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Desktop Split Layout */
+@media (min-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr 1.2fr;
+        /* Give detail view slightly more space */
+        align-items: start;
+        gap: 3rem;
+    }
+}
+
+.school-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.school-card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 1px solid rgba(62, 7, 3, 0.05);
+    box-shadow: 0 4px 10px rgba(62, 7, 3, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.school-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-brand-primary);
+    background-color: white;
+}
+
+.school-card.selected {
+    border-color: var(--color-brand-primary);
+    background-color: white;
+    box-shadow: 0 0 0 2px var(--color-brand-primary);
+}
+
+.school-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--color-brand-darkest);
+    font-weight: 700;
+}
+
+.arrow-icon {
+    color: var(--color-brand-accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: var(--transition-fast);
+}
+
+.school-card:hover .arrow-icon,
+.school-card.selected .arrow-icon {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Adjusted Header */
+.all-schools-header {
+    text-align: center;
+    font-size: 2.5rem;
+    /* Larger, page-wide prominence */
+    margin-bottom: 2rem;
+    color: var(--color-brand-primary);
+    font-weight: 800;
+}
+
+/* Detail View */
+.detail-panel {
+    position: sticky;
+    top: 120px;
+    /* Slightly lower sticky position */
+    margin-top: 5rem;
+    /* Push it down to align with selector or sit lower */
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(62, 7, 3, 0.05);
+}
+
+.detail-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.detail-content {
+    padding: 2.5rem;
+}
+
+.detail-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--color-brand-primary);
+    border-bottom: 2px solid var(--color-brand-cream);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.detail-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--color-brand-darkest);
+    line-height: 1.6;
+}
+
+.info-icon {
+    color: var(--color-brand-accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.detail-link {
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+    color: var(--color-brand-accent);
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent));
+    color: var(--color-brand-cream-light);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: var(--transition-fast);
+    box-shadow: 0 4px 15px rgba(102, 11, 5, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(102, 11, 5, 0.4);
+    color: white;
+}
+
+/* Placeholder State */
+.empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--color-brand-darkest);
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-lg);
+    border: 2px dashed rgba(62, 7, 3, 0.1);
+}
+
+/* General Info Section */
+.general-info-section {
+    max-width: 800px;
+    margin: 4rem auto 0;
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(62, 7, 3, 0.05);
+    border: 1px solid rgba(62, 7, 3, 0.05);
+    color: var(--color-brand-darkest);
+}
+
+.general-info-section h3 {
+    color: var(--color-brand-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}

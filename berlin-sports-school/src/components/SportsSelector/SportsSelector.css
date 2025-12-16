@@ -1,0 +1,183 @@
+/* src/components/SportsSelector/SportsSelector.css */
+
+/* --- LAYOUT --- */
+.sports-row {
+    display: flex;
+    justify-content: space-evenly; 
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    
+    /* UPDATED: Full Horizontal Width (Breakout) */
+    /* This forces the row to touch the screen edges even inside a container */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    
+    padding: 40px 20px; /* Added vertical padding back for visual balance on full-width */
+    
+    /* UPDATED: Background Color Variable */
+    /* Using the light cream for readability with dark cards */
+    background: var(--color-brand-cream); 
+    margin-bottom: -5vh;
+    
+    min-height: 500px; 
+    
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+}
+
+.loading-text {
+    height: 50vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-brand-darkest); /* Updated text color for contrast */
+    background: var(--color-brand-cream-light); /* Match main background */
+}
+
+/* --- CARD WRAPPER --- */
+.card-column {
+    position: relative;
+    perspective: 1000px;
+    margin: 10px 0; 
+}
+
+/* ... (Rest of your CSS remains unchanged) ... */
+
+.main-blob-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-lg); /* Updated to use variable */
+    overflow: hidden; 
+    background: #1a1a1a;
+    box-shadow: var(--shadow-card); /* Updated to use variable */
+    transition: all 0.5s ease;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+.blob-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.75);
+    transition: transform 0.6s ease;
+}
+
+.card-column:hover .blob-bg {
+    transform: scale(1.1);
+}
+
+.blob-overlay {
+    position: relative;
+    z-index: 2;
+    padding: 30px 20px;
+    text-align: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+.card-title {
+    margin: 0;
+    color: white; /* Kept white for contrast against dark card/blob */
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    letter-spacing: 1px;
+}
+
+.main-blob-wrapper.hidden {
+    opacity: 0;
+    transform: scale(0.95); 
+    pointer-events: none;
+}
+
+.bubbles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; 
+}
+
+.liquid-bubble {
+    position: absolute;
+    width: 100%; 
+    height: var(--bubble-height); 
+    background: #000;
+    border-radius: 30px; 
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(0) scale(0.9); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.liquid-bubble.visible {
+    opacity: 1;
+    transform: translateY(var(--trans-y)) scale(1);
+    transition-delay: var(--delay);
+    pointer-events: auto;
+}
+
+.liquid-bubble.visible:hover {
+    filter: brightness(1.2);
+    transform: translateY(var(--trans-y)) scale(1.03); 
+    z-index: 100 !important;
+    border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: var(--shadow-hover); /* Added hover shadow variable */
+}
+
+.bubble-inner-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.65);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bubble-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.liquid-bubble.visible .bubble-label {
+    opacity: 1;
+    transition-delay: calc(var(--delay) + 0.2s);
+}

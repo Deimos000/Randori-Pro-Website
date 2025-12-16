@@ -1,0 +1,177 @@
+{
+  "classes": {
+    "description": "Hier findest du unsere Kurspläne, Preise und Altersgruppen."
+  },
+  "contactPage": {
+    "name": "Sportakademie Berlin",
+    "address": "Musterstraße 123, 10115 Berlin",
+    "email": "E-Mail: info@berlinsport.de",
+    "heroTitle": "Unsere Standorte & Kontakt",
+    "heroSubtitle": "Finde eine Schule in deiner Nähe und vereinbare dein Probetraining.",
+    "allSchools": "Alle Schulen",
+    "locationPrefix": "Standort",
+    "visitWebsite": "Webseite besuchen",
+    "freeTrialBtn": "Kostenloses Probetraining",
+    "selectSchoolPrompt": "Wähle eine Schule aus der Liste, um Details zu sehen.",
+    "telLabel": "Tel:",
+    "emailLabel": "Email:"
+  },
+  "trialPage": {
+    "groupFull": "Diese Gruppe ist aktuell voll.",
+    "fillAllFields": "Bitte fülle alle Pflichtfelder aus.",
+    "authError": "Authentifizierungsfehler: API Key ungültig.",
+    "transferError": "Fehler bei der Übertragung.",
+    "networkError": "Netzwerkfehler. Bitte prüfe deine Verbindung.",
+    "noSlots": "Aktuell keine freien Termine für diese Sportart.",
+    "step1Title": "Wähle deinen Standort",
+    "step2Title": "Altersgruppe wählen",
+    "step3Title": "Deine Kontaktdaten",
+    "back": "Zurück",
+    "backStep": "Schritt zurück",
+    "showYears": "Jahrgänge anzeigen",
+    "full": "Voll",
+    "contactSubtitle": "Wie können wir dich erreichen?",
+    "sending": "Sende...",
+    "requestInfoOnly": "Nur Infos anfordern (Warteliste)",
+    "or": "ODER",
+    "bookTrialDirectly": "Direkt Probetraining buchen →",
+    "bookingNotAvailable": "Online-Buchung für diese Gruppe momentan nicht möglich.",
+    "step4Title": "Welches Training?",
+    "clickForSlots": "Klicke für Termine",
+    "step5Title": "Wähle deinen Termin",
+    "selectTimePrompt": "Wähle eine Zeit aus und bestätige rechts.",
+    "successTitle": "Anfrage erfolgreich!",
+    "successMsg": "Wir haben deine Daten erhalten und melden uns in Kürze bei dir.",
+    "backToHome": "Zurück zur Startseite",
+    "yourSelection": "Deine Auswahl",
+    "locationLabel": "Standort",
+    "ageGroupLabel": "Altersgruppe",
+    "sportLabel": "Sportart",
+    "startPrompt": "Wähle einen Standort, um zu beginnen.",
+    "slotSelectedMsg": "Termin ausgewählt. Klicke unten, um das Training verbindlich zu buchen.",
+    "selectSlotMsg": "Bitte wähle links einen freien Termin aus.",
+    "booking": "Wird gebucht...",
+    "confirmDate": "Termin bestätigen",
+    "importantNote": "Wichtig: Bitte erscheine 15 Minuten vor Trainingsbeginn. Bringe bequeme Sportkleidung und etwas zu trinken mit. Wir freuen uns auf dich!"
+  },
+  "nav": {
+    "home": "Startseite",
+    "classes": "Kurse",
+    "trial": "Probetraining",
+    "contact": "Kontakt",
+    "sports": "Sportarten",
+    "lang": "DE",
+    "switchLang": "Switch to English",
+    "about": "Über Uns"
+  },
+  "footer": {
+    "copyright": "Sportakademie Berlin",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "legal": "Impressum"
+  },
+  "schoolSportConnect": {
+    "loading": "Laden...",
+    "step1Title": "1. Sportart wählen",
+    "showingSportsAtSchool": "Zeige Sportarten an der gewählten Schule",
+    "viewingAllSports": "Zeige alle verfügbaren Sportarten",
+    "showAll": "Alle anzeigen",
+    "allAges": "Alle Altersgruppen",
+    "noSportsFound": "Keine Sportarten für diese Schule gefunden.",
+    "step2Title": "2. Schule wählen",
+    "bookTrialPrompt": "Buche ein Probetraining an verfügbaren Standorten",
+    "selectSchoolPrompt": "Wähle eine Schule, um Sportarten zu sehen",
+    "tapToFilter": "Antippen zum Filtern",
+    "bookNow": "Jetzt buchen",
+    "selectSport": "Sportart wählen"
+  },
+  "home": {
+    "heroTitle": "Sportakademie Berlin",
+    "heroSub": "Euer Spezialist für Kampfsport, Selbstverteidigung und Fitness in Berlin und Brandenburg.",
+    "ctaTrial": "Probetraining vereinbaren",
+    "findLocation": "Standort finden",
+    "disciplinesTitle": "Unsere Disziplinen"
+  },
+  "sportsSelector": {
+    "jiuJitsu": "Jiu Jitsu",
+    "kbf": "KBF",
+    "kungFu": "Kung Fu",
+    "kickboxing": "Kickboxen",
+    "more": "Mehr...",
+    "viewAll": "Alle ansehen"
+  },
+  "form": {
+    "step1Title": "Wähle deinen Standort",
+    "step2Title": "Altersgruppe wählen",
+    "step3Title": "Sportart wählen",
+    "step4Title": "Deine Kontaktdaten",
+    "step5Title": "Termin buchen",
+    "next": "Weiter",
+    "back": "Zurück",
+    "submit": "Anfrage senden",
+    "submitAndBook": "Daten speichern & Termin wählen",
+    "successTitle": "Alles erledigt!",
+    "successMsg": "Wir haben deine Anfrage erhalten und melden uns in Kürze.",
+    "labels": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail Adresse",
+      "phone": "Telefonnummer"
+    },
+    "loading": "Lade Daten...",
+    "closedMsg": "Für diese Gruppe besteht aktuell ein Aufnahmestopp."
+  },
+  "trainers": {
+    "title": "Unser Team"
+  },
+  "finder": {
+    "title": "Finde deine Schule",
+    "loading": "Lade Schulen...",
+    "bestRoute": "Beste Route gefunden",
+    "clear": "Leeren",
+    "minWalk": "Minuten Fußweg",
+    "allSchools": "Alle Schulen",
+    "schoolsIn": "Schulen in",
+    "calculating": "Berechne Routen...",
+    "checkingCandidates": "(Prüfe Top-Kandidaten)"
+  },
+  "aboutUs": {
+    "heroTitle": "Über uns",
+    "heroSubtitle": "Mehr als ein Sport – eine Familie und eine Lebenseinstellung!",
+    "intro": "RANDORI-PRO verfolgt die Vision, jedem in unserer Gemeinschaft dabei zu helfen, seine persönlichen Ziele zu erreichen. Wir bieten dir eine familiäre Umgebung, in der wir uns gegenseitig unterstützen und helfen. Bei uns sind Kinder, Erwachsene und Familien, aber auch Leistungssportler und Wettkampfinteressierte „zuhause“.",
+    "missionTitle": "Unsere Mission",
+    "missionText": "Jedem Menschen dabei zu helfen, die beste Version seiner Selbst zu werden und die gesteckten Ziele zu erreichen!",
+    "promiseTitle": "Unser Versprechen",
+    "promiseText": "Mit uns erreichst du deine Ziele, denn WIR LIEBEN WAS WIR TUN und machen dich zur effizientesten Waffe gegen die „Probleme“ deines Lebens.",
+    "history": "Seit 1994 bietet die Sportschule Randori-Pro Kampf- und Fitnesssport für alle Alters- und Leistungsstufen. Mit mehr als 3000 Mitgliedern an fünf Berliner Standorten sind wir Deutschlands größter Anbieter.",
+    "principlesTitle": "Unsere Prinzipien",
+    "principles": [
+      {
+        "title": "Community, Team, Familie",
+        "text": "Wir legen einen hohen Wert darauf, unseren Mitgliedern ein Gefühl der Sicherheit und Geborgenheit in unseren Sportschulen zu bieten. Aus diesem Grund haben wir eine familiäre Atmosphäre geschaffen."
+      },
+      {
+        "title": "Alles, als Teil des großen Ganzen",
+        "text": "All unser Tun und Handeln verfolgt einen tieferen Sinn. So bauen wir beispielsweise unsere Selbstverteidigungskurse auf drei stabile Säulen: Technik, Physis, Theorie."
+      },
+      {
+        "title": "Stillstand ist das Ende",
+        "text": "Wir wissen, dass wir nicht perfekt sind. Dennoch haben wir das Bestreben nach Perfektion und halten unsere Augen stets offen, um neue, bessere Elemente in unser Training aufzunehmen."
+      },
+      {
+        "title": "Qualität und Kundennutzen",
+        "text": "Wir achten auf die kompromisslose Qualität unserer Leistungen. Wir möchten einen positiven Einfluss haben, indem wir Menschen unterstützen, sich persönlich zu entwickeln."
+      }
+    ],
+    "teamTitle": "Die Köpfe hinter Randori-Pro",
+    "advantagesTitle": "Deine Vorteile",
+    "advantages": [
+      "7x in Berlin und Brandenburg",
+      "Über 4000 qm Sportschule",
+      "Riesige Community",
+      "Über 300 Kurse die Woche",
+      "Zertifizierte Trainer",
+      "Getränkeflatrate"
+    ]
+  }
+}

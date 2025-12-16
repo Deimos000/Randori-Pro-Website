@@ -1,0 +1,78 @@
+/* src/pages/Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+.home-dark-wrapper {
+    background-color: var(--color-brand-darkest);
+    padding: 60px 0;
+}
+
+.home-spacer {
+    height: 80px;
+}
+
+.disciplines-header {
+    /* 1. Nice Font & Size */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; /* Extra Bold looks great here */
+    font-size: 3.5rem; /* Increased size */
+    
+    /* Text Styles */
+    color: rgb(168, 9, 9);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Increased slightly for the new font */
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Softer, deeper shadow */
+
+    /* Gradient Background */
+    background: linear-gradient(
+        to bottom, 
+        var(--color-brand-darkest), 
+        var(--color-brand-cream)
+    );
+    
+    /* Full Width "Breakout" Logic */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    
+    /* Spacing */
+    padding: 6vh 0 4vh 0; /* Added more vertical breathing room */
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* 2. The Underscore Line */
+.disciplines-header::after {
+    content: '';
+    display: block;
+    height: 6px; /* Thickness of the line */
+    background-color: currentColor; /* Matches the text color */
+    border-radius: 3px;
+    opacity: 0.8;
+    
+    /* Centering logic */
+    margin: 15px auto 0 auto; 
+    
+    /* 3. The Scroll Animation Logic */
+    width: 50px; /* Start at 0 width */
+    animation: expand-line linear forwards;
+    
+    /* This binds the animation to the scroll position */
+    animation-timeline: view();
+    /* Start animating when element enters screen, finish when it's 50% up */
+    animation-range: entry 1% cover 60%; 
+}
+
+/* The Animation Keyframes */
+@keyframes expand-line {
+    from {
+        width: 0px;
+        opacity: 1;
+    }
+    to {
+        width: 100vh; /* The final width of the underscore */
+        opacity: 1;
+    }
+}

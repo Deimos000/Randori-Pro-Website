@@ -1,0 +1,157 @@
+/* src/components/Trainers/Trainers.css */
+
+.trainers-section {
+  height: 400vh;
+  position: relative;
+  z-index: 10;
+  /* Ensure the main background matches the bottom of your header gradient */
+  background-color: var(--color-brand-darkest, #111);
+}
+
+.trainers-sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Keeps the cards vertically centered */
+}
+
+/* =========================================
+   HEADER (RESTORED GRADIENT)
+   ========================================= */
+.trainers-header {
+  /* 1. Typography */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: rgb(168, 9, 9);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+  /* 2. Positioning */
+  /* We use absolute so it stays pinned to the top, 
+     allowing the cards to be centered freely below/behind it */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  /* Sits on top of cards if they overlap */
+
+  /* 3. RESTORED: Gradient & Dimensions */
+  padding: 8vh 0 8vh 0;
+  /* Gives the gradient vertical space */
+
+  background: linear-gradient(to bottom,
+      var(--color-brand-cream),
+      var(--color-brand-darkest));
+
+  /* Optional: A subtle fade at the bottom edge to blend perfectly */
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.trainers-header::after {
+  content: '';
+  display: block;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 3px;
+  margin: 15px auto 0 auto;
+  opacity: 0.8;
+  width: 50px;
+  animation: expand-line linear forwards;
+  animation-timeline: view();
+  animation-range: entry 1% cover 60%;
+}
+
+@keyframes expand-line {
+  from {
+    width: 0px;
+    opacity: 1;
+  }
+
+  to {
+    width: 60vw;
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   CARDS CONTAINER
+   ========================================= */
+.trainers-cards-container {
+  display: flex;
+  gap: 4vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  width: max-content;
+  align-items: center;
+  height: 100%;
+
+  /* Pushes content slightly down if you want to avoid 
+     the header covering the top of tall images on small screens */
+  padding-top: 10vh;
+}
+
+.no-images-msg {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  padding-left: 5vw;
+}
+
+/* =========================================
+   CARD STYLING
+   ========================================= */
+.trainer-card {
+  position: relative;
+  height: 55vh;
+  width: 35vh;
+  min-width: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  background-color: #1a1a1a;
+  transform-origin: center center;
+}
+
+.trainer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trainer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 2rem;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.9) 100%);
+}
+
+.trainer-name {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}

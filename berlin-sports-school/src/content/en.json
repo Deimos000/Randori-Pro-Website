@@ -1,0 +1,177 @@
+{
+  "classes": {
+    "description": "Here you will list your sports schedules, pricing, and age groups."
+  },
+  "contactPage": {
+    "name": "Berlin Sports School",
+    "address": "Musterstraße 123, 10115 Berlin",
+    "email": "Email: info@berlinsport.de",
+    "heroTitle": "Our Locations & Contact",
+    "heroSubtitle": "Find a school near you and book your trial session.",
+    "allSchools": "All Schools",
+    "locationPrefix": "Location",
+    "visitWebsite": "Visit Website",
+    "freeTrialBtn": "Free Trial Session",
+    "selectSchoolPrompt": "Select a school from the list to see details.",
+    "telLabel": "Tel:",
+    "emailLabel": "Email:"
+  },
+  "trialPage": {
+    "groupFull": "This group is currently full.",
+    "fillAllFields": "Please fill in all required fields.",
+    "authError": "Authentication error: Invalid API Key.",
+    "transferError": "Transfer error.",
+    "networkError": "Network error. Please check your connection.",
+    "noSlots": "Currently no available slots for this sport.",
+    "step1Title": "Choose your Location",
+    "step2Title": "Choose Age Group",
+    "step3Title": "Your Contact Details",
+    "back": "Back",
+    "backStep": "Step Back",
+    "showYears": "Show age groups",
+    "full": "Full",
+    "contactSubtitle": "How can we reach you?",
+    "sending": "Sending...",
+    "requestInfoOnly": "Request Info Only (Waitlist)",
+    "or": "OR",
+    "bookTrialDirectly": "Book Trial Session Directly ->",
+    "bookingNotAvailable": "Online booking is not available for this group at the moment.",
+    "step4Title": "Which Training?",
+    "clickForSlots": "Click for dates",
+    "step5Title": "Choose your Date",
+    "selectTimePrompt": "Select a time and confirm on the right.",
+    "successTitle": "Request Successful!",
+    "successMsg": "We have received your data and will get back to you shortly.",
+    "backToHome": "Back to Home",
+    "yourSelection": "Your Selection",
+    "locationLabel": "Location",
+    "ageGroupLabel": "Age Group",
+    "sportLabel": "Sport",
+    "startPrompt": "Select a location to start.",
+    "slotSelectedMsg": "Date selected. Click below to book the training.",
+    "selectSlotMsg": "Please select a free date on the left.",
+    "booking": "Booking...",
+    "confirmDate": "Confirm Date",
+    "importantNote": "Important: Please arrive 15 minutes before training starts. Bring comfortable sports clothes and a drink. We look forward to seeing you!"
+  },
+  "nav": {
+    "home": "Home",
+    "classes": "Classes",
+    "trial": "Trial Session",
+    "contact": "Contact",
+    "sports": "Sports",
+    "lang": "EN",
+    "switchLang": "Switch to German",
+    "about": "About Us"
+  },
+  "footer": {
+    "copyright": "Berlin Sports School",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "legal": "Legal"
+  },
+  "schoolSportConnect": {
+    "loading": "Loading...",
+    "step1Title": "1. Select Sport",
+    "showingSportsAtSchool": "Showing sports at selected school",
+    "viewingAllSports": "Viewing all available sports",
+    "showAll": "Show All",
+    "allAges": "All Ages",
+    "noSportsFound": "No sports found for this school.",
+    "step2Title": "2. Select School",
+    "bookTrialPrompt": "Book a trial at available locations",
+    "selectSchoolPrompt": "Select a school to see its sports",
+    "tapToFilter": "Tap to filter sports",
+    "bookNow": "Book Now",
+    "selectSport": "Select Sport"
+  },
+  "home": {
+    "heroTitle": "Berlin Sports Academy",
+    "heroSub": "A very nice slogan",
+    "ctaTrial": "Book Trial Session",
+    "findLocation": "Find a Location",
+    "disciplinesTitle": "Our Disciplines"
+  },
+  "sportsSelector": {
+    "jiuJitsu": "Jiu Jitsu",
+    "kbf": "KBF",
+    "kungFu": "Kung Fu",
+    "kickboxing": "Kickboxing",
+    "more": "More...",
+    "viewAll": "View All"
+  },
+  "form": {
+    "step1Title": "Choose your Location",
+    "step2Title": "Choose Age Group",
+    "step3Title": "Choose Sport",
+    "step4Title": "Your Contact Details",
+    "step5Title": "Book Appointment",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Send Request",
+    "submitAndBook": "Save Data & Choose Appointment",
+    "successTitle": "All Done!",
+    "successMsg": "We have received your request and will get back to you shortly.",
+    "labels": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number"
+    },
+    "loading": "Loading Data...",
+    "closedMsg": "There is currently a stop on admissions for this group."
+  },
+  "trainers": {
+    "title": "Meet Our Team"
+  },
+  "finder": {
+    "title": "Find your School",
+    "loading": "Loading Schools...",
+    "bestRoute": "Best Route Found",
+    "clear": "Clear",
+    "minWalk": "min walk",
+    "allSchools": "All Schools",
+    "schoolsIn": "Schools in",
+    "calculating": "Calculating Routes...",
+    "checkingCandidates": "(Checking top candidates)"
+  },
+  "aboutUs": {
+    "heroTitle": "About Us",
+    "heroSubtitle": "More than just a sport – a family and a way of life!",
+    "intro": "RANDORI-PRO pursues the vision of helping everyone in our community achieve their personal goals. We offer you a family-like environment where we support and help each other. Children, adults, and families, as well as competitive athletes, are “at home” with us.",
+    "missionTitle": "Our Mission",
+    "missionText": "To help every person become the best version of themselves and achieve their set goals!",
+    "promiseTitle": "Our Promise",
+    "promiseText": "With us, you will reach your goals because WE LOVE WHAT WE DO and make you the most efficient weapon against the “problems” of your life.",
+    "history": "Since 1994, Randori-Pro Sports School has offered martial arts and fitness for all ages and skill levels. With over 3000 members at five Berlin locations, we are Germany's largest provider.",
+    "principlesTitle": "Our Principles",
+    "principles": [
+      {
+        "title": "Community, Team, Family",
+        "text": "We place great value on offering our members a sense of safety and security in our sports schools. For this reason, we have created a family atmosphere."
+      },
+      {
+        "title": "Everything as Part of the Big Picture",
+        "text": "All our actions pursue a deeper meaning. For example, we build our self-defense courses on three stable pillars: Technique, Physique, Theory."
+      },
+      {
+        "title": "Stagnation is the End",
+        "text": "We know that we are not perfect. However, we strive for perfection and keep our eyes open to incorporate new, better elements into our training."
+      },
+      {
+        "title": "Quality and Customer Benefit",
+        "text": "We pay attention to the uncompromising quality of our services. We want to have a positive influence by supporting people in their personal development."
+      }
+    ],
+    "teamTitle": "The Minds Behind Randori-Pro",
+    "advantagesTitle": "Your Benefits",
+    "advantages": [
+      "7x in Berlin and Brandenburg",
+      "Over 4000 sqm Sports School",
+      "Huge Community",
+      "Over 300 Courses per Week",
+      "Certified Trainers",
+      "Unlimited Drinks"
+    ]
+  }
+}

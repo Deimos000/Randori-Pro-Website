@@ -1,0 +1,249 @@
+/* BerlinMap.css */
+
+/* --- 1. MAIN MAP CONTAINER --- */
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* Use light cream for the area behind the map while loading */
+  background-color: var(--color-brand-cream-light); 
+  border-radius: var(--radius-lg);
+  overflow: hidden; 
+  /* Inner shadow to give the map depth inside the card */
+  box-shadow: inset 0 0 40px rgba(62, 7, 3, 0.05);
+  border: 1px solid rgba(62, 7, 3, 0.05);
+}
+
+/* Force Leaflet to fill container */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  z-index: 1;
+  /* Match the warm tone of the brand */
+  background: var(--color-brand-cream-light); 
+}
+
+/* --- 2. TOGGLE BUTTON (Top Right) --- */
+.map-toggle-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Above map tiles */
+  
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  /* Default State (Map Frozen) */
+  background-color: var(--color-brand-cream-light);
+  color: var(--color-brand-darkest);
+  border: 1px solid rgba(62, 7, 3, 0.1);
+  
+  padding: 10px 20px;
+  border-radius: 50px; /* Pill shape */
+  
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px); /* Frosted effect */
+}
+
+/* Hover State */
+.map-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+/* Active State (Map Unlocked) */
+.map-toggle-btn.active {
+  background-color: var(--color-brand-primary);
+  color: var(--color-brand-cream); /* Light text on dark red */
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 4px 15px rgba(102, 11, 5, 0.4);
+}
+
+.map-toggle-btn.active:hover {
+  background-color: var(--color-brand-accent);
+  transform: translateY(-1px);
+}
+
+/* --- 3. INFO OVERLAY (Bottom Right) --- */
+.info-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  
+  /* Glassmorphism using Brand Cream */
+  background: rgba(255, 252, 245, 0.9); /* Cream Light with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 240, 196, 0.6); /* Brand Cream Border */
+  box-shadow: var(--shadow-card);
+  
+  min-width: 200px;
+  text-align: right;
+  pointer-events: none; /* Clicks pass through to map */
+  
+  /* Entrance Animation */
+  animation: slideInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.info-overlay h3 {
+  margin: 0 0 6px 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-brand-accent); /* Red accent for label */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.info-overlay p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--color-brand-darkest);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Smooth Slide In Animation */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 4. CUSTOM TOOLTIPS (Hovering Districts) --- */
+.custom-tooltip {
+  background-color: var(--color-brand-darkest);
+  border: 1px solid var(--color-brand-primary);
+  color: var(--color-brand-cream);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hover);
+  opacity: 1 !important;
+  white-space: nowrap;
+}
+
+/* Hide default leaflet tooltip arrow */
+.leaflet-tooltip-left:before, 
+.leaflet-tooltip-right:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+  display: none;
+}
+
+/* --- 5. POPUP STYLING (School Click) --- */
+.leaflet-popup-content-wrapper {
+  background: var(--color-brand-cream-light);
+  color: var(--color-brand-darkest);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(62, 7, 3, 0.1);
+}
+
+.leaflet-popup-content {
+  margin: 16px 20px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.leaflet-popup-content strong {
+  color: var(--color-brand-primary);
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.leaflet-popup-tip {
+  background: var(--color-brand-cream-light);
+  box-shadow: none; /* Clean look */
+}
+
+/* Close button on popup */
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--color-brand-accent);
+  padding: 8px;
+  font-size: 18px;
+  transition: color var(--transition-fast);
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: var(--color-brand-darkest);
+}
+
+/* --- 6. PULSING ACCENT CIRCLE (Hover Effect) --- */
+.pulsing-marker-icon {
+  background: transparent;
+  border: none;
+  pointer-events: none; 
+}
+
+/* The solid core */
+.pulsing-marker-icon:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-brand-accent);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 10px rgba(140, 16, 7, 0.6);
+  animation: core-breathe 2.5s infinite ease-in-out; 
+}
+
+/* The expanding ring */
+.pulsing-marker-icon:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--color-brand-accent);
+  z-index: -1;
+  opacity: 0.6;
+  animation: ripple-out 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ripple-out {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
+}
+
+@keyframes core-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.85); }
+}
+
+/* --- 7. ROUTING MACHINE OVERRIDES --- */
+.leaflet-routing-container {
+  display: none !important; /* Hide default sidebar */
+}
+
+/* Customizing the Route Line (SVG Path) */
+.leaflet-overlay-pane path.leaflet-interactive {
+  /* This targets the blue route line. 
+     Note: Leaflet styles this via JS props usually, 
+     but we can influence stroke if !important is used carefully,
+     or we rely on the component props (Color: #0066ff in JSX).
+     For strict branding, you should update the JS component color prop 
+     to match var(--color-brand-primary). */
+  stroke-linecap: round;
+}
