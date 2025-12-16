@@ -94,7 +94,7 @@ const ParticleVisualizer = ({ text = "", width, height, textPosition = { x: 50, 
                 particlesRef.current.forEach(p => {
                     // Random strong velocity
                     const angle = Math.random() * Math.PI * 2;
-                    const force = Math.random() * 20 + 5; // Moderate kick
+                    const force = Math.random() * 40 + 15; // Stronger kick for bigger explosion
                     p.vx = Math.cos(angle) * force;
                     p.vy = Math.sin(angle) * force;
                 });
