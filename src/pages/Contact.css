@@ -1,39 +1,54 @@
-/* src/pages/Contact.css */
 .contact-page {
     width: 100%;
     min-height: 100vh;
     background-color: var(--color-brand-cream-light);
-    /* Warm background to contrast with white cards */
     color: var(--color-brand-darkest);
-    padding-top: 80px;
     padding-bottom: 60px;
-    /* Standard spacing */
+    /* Removed padding-top so hero goes under navbar */
 }
 
 .contact-hero {
+    position: relative;
     text-align: center;
-    padding: 4rem 1rem;
-    background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent));
+    padding: 180px 20px 80px;
+    /* More top padding for navbar */
+    background: linear-gradient(135deg, var(--color-brand-primary), #3e0703);
     color: white;
-    margin-bottom: 3rem;
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    margin-bottom: 4rem;
+    clip-path: ellipse(150% 100% at 50% 0%);
+    /* Curved bottom edge for modern feel */
     box-shadow: 0 10px 30px rgba(62, 7, 3, 0.2);
 }
 
+.contact-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+    pointer-events: none;
+}
+
 .contact-hero h1 {
-    font-size: 3rem;
-    margin-bottom: 0.75rem;
+    font-size: 4rem;
+    margin-bottom: 1rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--color-brand-cream);
+    letter-spacing: -0.03em;
+    color: white;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .contact-hero p {
-    font-size: 1.2rem;
-    opacity: 0.95;
+    font-size: 1.3rem;
+    opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
-    color: var(--color-brand-cream-light);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
 }
 
 .contact-container {

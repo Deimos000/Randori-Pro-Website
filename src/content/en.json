@@ -14,7 +14,10 @@
     "freeTrialBtn": "Free Trial Session",
     "selectSchoolPrompt": "Select a school from the list to see details.",
     "telLabel": "Tel:",
-    "emailLabel": "Email:"
+    "emailLabel": "Email:",
+    "centralAdminTitle": "Central Administration",
+    "centralAdminDesc": "Do you have general questions about our schools, contracts, or events? Our team is happy to help you.",
+    "centralAdminHours": "Mon - Fri: 09:00 - 18:00"
   },
   "trialPage": {
     "groupFull": "This group is currently full.",
@@ -164,14 +167,90 @@
       }
     ],
     "teamTitle": "The Minds Behind Randori-Pro",
+    "heroKeywords": [
+      "ABOUT US",
+      "OUR PRINCIPLES",
+      "OUR TEAM",
+      "YOUR BENEFITS"
+    ],
+    "team": [
+      {
+        "name": "Lutz Heyden",
+        "role": "CEO, Randori-Pro Holding",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Lutz-Heyden.jpg"
+      },
+      {
+        "name": "Oliver Roszak",
+        "role": "Managing Director, Spandau",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Olver-Roszak.jpg"
+      },
+      {
+        "name": "Tanya Pieper",
+        "role": "Managing Director, Lübars",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Tanya-Pieper.jpg"
+      },
+      {
+        "name": "Dominik Krüger",
+        "role": "Director of Growth",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Dominik-Kr%C3%BCger.jpg"
+      },
+      {
+        "name": "Harry Werz",
+        "role": "Managing Director, Wilmersdorf",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Harry-Werz.jpg"
+      },
+      {
+        "name": "Felix Schwenzfeier",
+        "role": "Managing Director, Tegel",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Felix-Schwenzfeier.jpg"
+      },
+      {
+        "name": "Isabell Nagel",
+        "role": "Studio Manager, Waltersdorf",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/05/Isabell-Kampfsport-Selbstverteidigung-Fitness.jpg"
+      },
+      {
+        "name": "Nicole Brakmann",
+        "role": "Managing Director, Steglitz",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/05/Trainer-Nicole-Brakmann.jpg"
+      },
+      {
+        "name": "Stephanie Meyer",
+        "role": "Director of Administration",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/05/stephanie-meyer.jpeg"
+      }
+    ],
     "advantagesTitle": "Your Benefits",
-    "advantages": [
-      "7x in Berlin and Brandenburg",
-      "Over 4000 sqm Sports School",
-      "Huge Community",
-      "Over 300 Courses per Week",
-      "Certified Trainers",
-      "Unlimited Drinks"
-    ]
+    "advantagesList": [
+      {
+        "bold": "7x in Berlin & Brandenburg",
+        "text": ": Wilmersdorf, Spandau, Lübars, Steglitz, Tegel, Waltersdorf, Mariendorf."
+      },
+      {
+        "bold": "Over 4000 sqm",
+        "text": ": 1800sqm training area, fitness areas and more."
+      },
+      {
+        "bold": "Huge Community",
+        "text": ": Become part of over 6000 fans and members."
+      },
+      {
+        "bold": "Variety",
+        "text": ": Over 300 courses per week."
+      },
+      {
+        "bold": "Quality",
+        "text": ": Certified trainers & educators."
+      },
+      {
+        "bold": "Comfort",
+        "text": ": Drinks flatrate included."
+      }
+    ],
+    "cta": {
+      "title": "Ready for Change?",
+      "text": "Do you want to develop yourself and shape your life according to your ideas?",
+      "button": "Free Trial Session"
+    }
   }
 }

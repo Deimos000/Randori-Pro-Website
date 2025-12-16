@@ -1,15 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useText } from '../context/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 import ParticleVisualizer from '../components/ParticleHero/ParticleHero';
 import './AboutUs.css';
 
 const AboutUs = () => {
-    const [currentHeader, setCurrentHeader] = useState("ÜBER UNS");
+    const navigate = useNavigate();
+    const { content } = useText();
+    // Use first keyword as default
+    const [currentHeader, setCurrentHeader] = useState(content.aboutUs.heroKeywords[0]);
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
 
     const sectionsRef = useRef([]);
+
+    // Update currentHeader if language changes
+    useEffect(() => {
+        setCurrentHeader(content.aboutUs.heroKeywords[0]);
+    }, [content.aboutUs.heroKeywords]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -52,7 +62,7 @@ const AboutUs = () => {
                 if (section) observer.unobserve(section);
             });
         };
-    }, []);
+    }, [content.aboutUs.heroKeywords]); // Re-run if keywords change
 
     const addToRefs = (el) => {
         if (el && !sectionsRef.current.includes(el)) {
@@ -108,7 +118,7 @@ const AboutUs = () => {
                     width={windowSize.width}
                     height={windowSize.height}
                     textPosition={{ x: 50, y: 30 }} // Position text in the upper third
-                    precomputeTexts={["ÜBER UNS", "UNSERE PRINZIPIEN", "UNSER TEAM", "DEINE VORTEILE"]}
+                    precomputeTexts={content.aboutUs.heroKeywords}
                     isExploded={isExploded}
                 />
             </div>
@@ -117,71 +127,49 @@ const AboutUs = () => {
             <div className="content-scroll-container">
 
                 {/* Intro Section */}
-                <section ref={addToRefs} className="content-section" data-title="ÜBER UNS">
+                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[0]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card">
-                        <h2>Mehr als ein Sport – eine Familie</h2>
+                        <h2>{content.aboutUs.subHeading}</h2>
                         <p>
-                            RANDORI-PRO verfolgt die Vision, jedem in unserer Gemeinschaft dabei zu helfen, seine persönlichen Ziele zu erreichen.
-                            Wir bieten dir eine familiäre Umgebung, in der wir uns gegenseitig unterstützen.
+                            {content.aboutUs.intro}
                         </p>
                         <div className="grid-features">
                             <div className="feature-item">
-                                <h3>Unsere Mission</h3>
-                                <p>Jedem Menschen dabei zu helfen, die beste Version seiner Selbst zu werden.</p>
+                                <h3>{content.aboutUs.missionTitle}</h3>
+                                <p>{content.aboutUs.missionText}</p>
                             </div>
                             <div className="feature-item">
-                                <h3>Unser Versprechen</h3>
-                                <p>Mit uns erreichst du deine Ziele, denn WIR LIEBEN WAS WIR TUN.</p>
+                                <h3>{content.aboutUs.promiseTitle}</h3>
+                                <p>{content.aboutUs.promiseText}</p>
                             </div>
                         </div>
                         <p className="history-text">
-                            Seit 1994 bietet die Sportschule Randori-Pro Kampf- und Fitnesssport für alle Alters- und Leistungsstufen.
-                            Mit mehr als 3000 Mitgliedern an fünf Berliner Standorten sind wir Deutschlands größter Anbieter.
+                            {content.aboutUs.history}
                         </p>
                     </div>
                 </section>
 
                 {/* Principles Section */}
-                <section ref={addToRefs} className="content-section" data-title="UNSERE PRINZIPIEN">
+                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[1]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card principles-grid">
-                        <div className="principle-card">
-                            <h3>Community, Team, Familie</h3>
-                            <p>Sicherheit und Geborgenheit. Eine familiäre Atmosphäre, in der du dich entfalten kannst.</p>
-                        </div>
-                        <div className="principle-card">
-                            <h3>Das große Ganze</h3>
-                            <p>Technik, Physis und Theorie – drei stabile Säulen für deine Entwicklung.</p>
-                        </div>
-                        <div className="principle-card">
-                            <h3>Stillstand ist das Ende</h3>
-                            <p>Wir streben nach Perfektion und bleiben stets in Bewegung.</p>
-                        </div>
-                        <div className="principle-card">
-                            <h3>Qualität</h3>
-                            <p>Kompromisslose Qualität mit den besten Trainern und Experten.</p>
-                        </div>
+                        {content.aboutUs.principles.map((principle, idx) => (
+                            <div key={idx} className="principle-card">
+                                <h3>{principle.title}</h3>
+                                <p>{principle.text}</p>
+                            </div>
+                        ))}
                     </div>
                 </section>
 
                 {/* Team Section */}
-                <section ref={addToRefs} className="content-section" data-title="UNSER TEAM">
+                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[2]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card team-container">
-                        <h2>Die Köpfe hinter Randori-Pro</h2>
+                        <h2>{content.aboutUs.teamTitle}</h2>
                         <div className="team-grid">
-                            {[
-                                { name: "Lutz Heyden", role: "Geschäftsführer, Randori-Pro Holding", image: "https://randori-pro.de/wp-content/uploads/2019/07/Lutz-Heyden.jpg" },
-                                { name: "Oliver Roszak", role: "Geschäftsführer, Spandau", image: "https://randori-pro.de/wp-content/uploads/2019/07/Olver-Roszak.jpg" },
-                                { name: "Tanya Pieper", role: "Geschäftsführerin, Lübars", image: "https://randori-pro.de/wp-content/uploads/2019/07/Tanya-Pieper.jpg" },
-                                { name: "Dominik Krüger", role: "Direktor für Wachstum", image: "https://randori-pro.de/wp-content/uploads/2019/07/Dominik-Kr%C3%BCger.jpg" },
-                                { name: "Harry Werz", role: "Geschäftsführer, Wilmersdorf", image: "https://randori-pro.de/wp-content/uploads/2019/07/Harry-Werz.jpg" },
-                                { name: "Felix Schwenzfeier", role: "Geschäftsführer, Tegel", image: "https://randori-pro.de/wp-content/uploads/2019/07/Felix-Schwenzfeier.jpg" },
-                                { name: "Isabell Nagel", role: "Studioleiterin, Waltersdorf", image: "https://randori-pro.de/wp-content/uploads/2019/05/Isabell-Kampfsport-Selbstverteidigung-Fitness.jpg" },
-                                { name: "Nicole Brakmann", role: "Geschäftsführerin, Steglitz", image: "https://randori-pro.de/wp-content/uploads/2019/05/Trainer-Nicole-Brakmann.jpg" },
-                                { name: "Stephanie Meyer", role: "Direktorin für Verwaltung", image: "https://randori-pro.de/wp-content/uploads/2019/05/stephanie-meyer.jpeg" }
-                            ].map((member, idx) => (
+                            {content.aboutUs.team.map((member, idx) => (
                                 <div key={idx} className="team-member-card">
                                     <div className="member-image-wrapper">
                                         <img src={member.image} alt={member.name} className="member-image" />
@@ -199,22 +187,21 @@ const AboutUs = () => {
                 </section>
 
                 {/* Advantages Section */}
-                <section ref={addToRefs} className="content-section" data-title="DEINE VORTEILE">
+                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[3]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card advantages-layout">
                         <ul className="advantages-list">
-                            <li><strong>7x in Berlin & Brandenburg</strong>: Wilmersdorf, Spandau, Lübars, Steglitz, Tegel, Waltersdorf, Mariendorf.</li>
-                            <li><strong>Über 4000 qm</strong>: 1800qm Trainingsfläche, Fitnessbereiche und mehr.</li>
-                            <li><strong>Riesige Community</strong>: Werde Teil von über 6000 Fans und Mitgliedern.</li>
-                            <li><strong>Vielfalt</strong>: Über 300 Kurse die Woche.</li>
-                            <li><strong>Qualität</strong>: Zertifizierte Trainer & Pädagogen.</li>
-                            <li><strong>Komfort</strong>: Getränkeflatrate inklusive.</li>
+                            {content.aboutUs.advantagesList.map((adv, idx) => (
+                                <li key={idx}>
+                                    <strong>{adv.bold}</strong>{adv.text}
+                                </li>
+                            ))}
                         </ul>
                         <div className="cta-box">
-                            <h3>Bereit für Veränderung?</h3>
-                            <p>Du möchtest dich weiterentwickeln und dein Leben nach deinen Vorstellungen gestalten?</p>
-                            <button className="cta-button" onClick={() => window.location.href = '/probetraining'}>
-                                Kostenloses Probetraining
+                            <h3>{content.aboutUs.cta.title}</h3>
+                            <p>{content.aboutUs.cta.text}</p>
+                            <button className="cta-button" onClick={() => navigate('/trial-booking')}>
+                                {content.aboutUs.cta.button}
                             </button>
                         </div>
                     </div>

@@ -125,13 +125,13 @@ export default function Contact() {
 
       {/* General Info Footer */}
       <section className="general-info-section">
-        <h3>{generalContact.title}</h3>
-        <p style={{ margin: '1rem 0' }}>{generalContact.description}</p>
+        <h3>{content.contactPage.centralAdminTitle}</h3>
+        <p style={{ margin: '1rem 0' }}>{content.contactPage.centralAdminDesc}</p>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
           <div><strong>{content.contactPage.telLabel}</strong> {generalContact.phone}</div>
           <div><strong>{content.contactPage.emailLabel}</strong> {generalContact.email}</div>
         </div>
-        <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--color-brand-darkest)', opacity: 0.7 }}>{generalContact.hours}</p>
+        <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--color-brand-darkest)', opacity: 0.7 }}>{content.contactPage.centralAdminHours}</p>
       </section>
 
       {/* Spacer for bottom breathing room */}

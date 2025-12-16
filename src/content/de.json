@@ -14,7 +14,10 @@
     "freeTrialBtn": "Kostenloses Probetraining",
     "selectSchoolPrompt": "Wähle eine Schule aus der Liste, um Details zu sehen.",
     "telLabel": "Tel:",
-    "emailLabel": "Email:"
+    "emailLabel": "Email:",
+    "centralAdminTitle": "Zentrale Verwaltung",
+    "centralAdminDesc": "Hast du allgemeine Fragen zu unseren Schulen, Verträgen oder Veranstaltungen? Unser Team steht dir gerne zur Verfügung.",
+    "centralAdminHours": "Mo - Fr: 09:00 - 18:00 Uhr"
   },
   "trialPage": {
     "groupFull": "Diese Gruppe ist aktuell voll.",
@@ -164,14 +167,90 @@
       }
     ],
     "teamTitle": "Die Köpfe hinter Randori-Pro",
+    "heroKeywords": [
+      "ÜBER UNS",
+      "UNSERE PRINZIPIEN",
+      "UNSER TEAM",
+      "DEINE VORTEILE"
+    ],
+    "team": [
+      {
+        "name": "Lutz Heyden",
+        "role": "Geschäftsführer, Randori-Pro Holding",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Lutz-Heyden.jpg"
+      },
+      {
+        "name": "Oliver Roszak",
+        "role": "Geschäftsführer, Spandau",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Olver-Roszak.jpg"
+      },
+      {
+        "name": "Tanya Pieper",
+        "role": "Geschäftsführerin, Lübars",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Tanya-Pieper.jpg"
+      },
+      {
+        "name": "Dominik Krüger",
+        "role": "Direktor für Wachstum",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Dominik-Kr%C3%BCger.jpg"
+      },
+      {
+        "name": "Harry Werz",
+        "role": "Geschäftsführer, Wilmersdorf",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Harry-Werz.jpg"
+      },
+      {
+        "name": "Felix Schwenzfeier",
+        "role": "Geschäftsführer, Tegel",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/07/Felix-Schwenzfeier.jpg"
+      },
+      {
+        "name": "Isabell Nagel",
+        "role": "Studioleiterin, Waltersdorf",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/05/Isabell-Kampfsport-Selbstverteidigung-Fitness.jpg"
+      },
+      {
+        "name": "Nicole Brakmann",
+        "role": "Geschäftsführerin, Steglitz",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/05/Trainer-Nicole-Brakmann.jpg"
+      },
+      {
+        "name": "Stephanie Meyer",
+        "role": "Direktorin für Verwaltung",
+        "image": "https://randori-pro.de/wp-content/uploads/2019/05/stephanie-meyer.jpeg"
+      }
+    ],
     "advantagesTitle": "Deine Vorteile",
-    "advantages": [
-      "7x in Berlin und Brandenburg",
-      "Über 4000 qm Sportschule",
-      "Riesige Community",
-      "Über 300 Kurse die Woche",
-      "Zertifizierte Trainer",
-      "Getränkeflatrate"
-    ]
+    "advantagesList": [
+      {
+        "bold": "7x in Berlin & Brandenburg",
+        "text": ": Wilmersdorf, Spandau, Lübars, Steglitz, Tegel, Waltersdorf, Mariendorf."
+      },
+      {
+        "bold": "Über 4000 qm",
+        "text": ": 1800qm Trainingsfläche, Fitnessbereiche und mehr."
+      },
+      {
+        "bold": "Riesige Community",
+        "text": ": Werde Teil von über 6000 Fans und Mitgliedern."
+      },
+      {
+        "bold": "Vielfalt",
+        "text": ": Über 300 Kurse die Woche."
+      },
+      {
+        "bold": "Qualität",
+        "text": ": Zertifizierte Trainer & Pädagogen."
+      },
+      {
+        "bold": "Komfort",
+        "text": ": Getränkeflatrate inklusive."
+      }
+    ],
+    "cta": {
+      "title": "Bereit für Veränderung?",
+      "text": "Du möchtest dich weiterentwickeln und dein Leben nach deinen Vorstellungen gestalten?",
+      "button": "Kostenloses Probetraining"
+    }
   }
 }

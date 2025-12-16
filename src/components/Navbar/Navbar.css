@@ -247,22 +247,3 @@
   gap: 10px;
   cursor: pointer;
 }
-/* --- 6. CONTACT PAGE MODE --- */
-.navbar.contact-mode {
-  background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent));
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.navbar.contact-mode .nav-link,
-.navbar.contact-mode .lang-btn-desktop,
-.navbar.contact-mode .open-btn {
-  color: #ffffff;
-}
-
-.navbar.contact-mode .lang-btn-desktop {
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.navbar.contact-mode .active-indicator {
-  background-color: #ffffff;
-}

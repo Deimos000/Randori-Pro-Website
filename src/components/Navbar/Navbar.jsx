@@ -65,7 +65,7 @@ export default function Navbar() {
     <>
       {/* --- TOP NAVBAR --- */}
       <motion.nav
-        className={`navbar ${location.pathname === '/contact' ? 'contact-mode' : (isScrolled ? 'scrolled' : 'transparent')}`}
+        className={`navbar ${isScrolled ? 'scrolled' : 'transparent'}`}
         animate={isHidden ? { y: "-100%" } : { y: 0 }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
       >
