@@ -155,7 +155,7 @@ const ParticleVisualizer = ({ text = "", width, height, textPosition = { x: 50, 
         canvas.height = height;
 
         // Init Particles
-        const particleCount = 2100; // Increased density per user request
+        const particleCount = 2500; // Increased density per user request
         if (particlesRef.current.length === 0) {
             for (let i = 0; i < particleCount; i++) {
                 // Dark Red Shades: Hue around 0/360, Dark Lightness
