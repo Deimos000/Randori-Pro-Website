@@ -6,7 +6,8 @@
     /* Warm background to contrast with white cards */
     color: var(--color-brand-darkest);
     padding-top: 80px;
-    /* Navbar spacer */
+    padding-bottom: 60px;
+    /* Standard spacing */
 }
 
 .contact-hero {
@@ -14,7 +15,6 @@
     padding: 4rem 1rem;
     background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent));
     color: white;
-    /* Explicitly white text on dark brand gradient */
     margin-bottom: 3rem;
     border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     box-shadow: 0 10px 30px rgba(62, 7, 3, 0.2);
@@ -26,7 +26,6 @@
     font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--color-brand-cream);
-    /* Cream title for premium look */
 }
 
 .contact-hero p {
@@ -50,7 +49,6 @@
 @media (min-width: 900px) {
     .contact-container {
         grid-template-columns: 1fr 1.2fr;
-        /* Give detail view slightly more space */
         align-items: start;
         gap: 3rem;
     }
@@ -112,7 +110,6 @@
 .all-schools-header {
     text-align: center;
     font-size: 2.5rem;
-    /* Larger, page-wide prominence */
     margin-bottom: 2rem;
     color: var(--color-brand-primary);
     font-weight: 800;
@@ -122,9 +119,6 @@
 .detail-panel {
     position: sticky;
     top: 120px;
-    /* Slightly lower sticky position */
-    margin-top: 5rem;
-    /* Push it down to align with selector or sit lower */
     background: white;
     border-radius: var(--radius-lg);
     overflow: hidden;

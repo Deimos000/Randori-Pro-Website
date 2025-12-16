@@ -133,6 +133,9 @@ export default function Contact() {
         </div>
         <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--color-brand-darkest)', opacity: 0.7 }}>{generalContact.hours}</p>
       </section>
+
+      {/* Spacer for bottom breathing room */}
+      <div style={{ height: '60px' }}></div>
     </div>
   );
 }
