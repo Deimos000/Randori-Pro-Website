@@ -7,7 +7,7 @@ import './Navbar.css';
 import heroLogo from '../../assets/randori-logo.png';
 
 export default function Navbar() {
-  const { content, toggleLanguage, lang } = useText();
+  const { getText, toggleLanguage, lang, getImage } = useText();
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -16,20 +16,16 @@ export default function Navbar() {
 
   const { scrollY } = useScroll();
 
-  // --- SCROLL LOGIC ---
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    // Hide navbar if scrolling down more than 150px
     if (latest > previous && latest > 150 && !isOpen) {
       setIsHidden(true);
     } else {
       setIsHidden(false);
     }
-    // Change background style after 50px
     setIsScrolled(latest > 50);
   });
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -39,7 +35,6 @@ export default function Navbar() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
-  // --- ANIMATION VARIANTS ---
   const menuVariants = {
     closed: {
       clipPath: "circle(0px at calc(100% - 40px) 40px)",
@@ -71,22 +66,22 @@ export default function Navbar() {
       >
         <div className="navbar-container">
 
-          {/* LOGO IMAGE REPLACEMENT */}
+          {/* LOGO - A/B testable via getImage */}
           <Link to="/" className="logo-link" onClick={() => setIsOpen(false)}>
             <img
-              src={heroLogo}
+              src={getImage('nav.logo', heroLogo)}
               alt="Berlin Sports Logo"
               className="logo-img"
             />
           </Link>
 
-          {/* DESKTOP MENU */}
+          {/* DESKTOP MENU - All links A/B testable */}
           <div className="desktop-links">
-            <DesktopLink to="/" text={content.nav.home} activePath={location.pathname} />
-            <DesktopLink to="/trial-booking" text={content.nav.trial} activePath={location.pathname} />
-            <DesktopLink to="/sports-overview" text={content.nav.sports} activePath={location.pathname} />
-            <DesktopLink to="/about" text={content.nav.about} activePath={location.pathname} />
-            <DesktopLink to="/contact" text={content.nav.contact} activePath={location.pathname} />
+            <DesktopLink to="/" text={getText('nav.home')} activePath={location.pathname} />
+            <DesktopLink to="/trial-booking" text={getText('nav.trial')} activePath={location.pathname} />
+            <DesktopLink to="/sports-overview" text={getText('nav.sports')} activePath={location.pathname} />
+            <DesktopLink to="/about" text={getText('nav.about')} activePath={location.pathname} />
+            <DesktopLink to="/contact" text={getText('nav.contact')} activePath={location.pathname} />
 
             <motion.button
               onClick={toggleLanguage}
@@ -99,7 +94,7 @@ export default function Navbar() {
             </motion.button>
           </div>
 
-          {/* MOBILE TOGGLE (HAMBURGER) - Only visible on mobile via CSS */}
+          {/* MOBILE TOGGLE */}
           <div className="mobile-toggle-wrapper">
             <motion.button
               className="mobile-toggle open-btn"
@@ -120,7 +115,6 @@ export default function Navbar() {
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
       >
-        {/* CLOSE BUTTON */}
         <motion.button
           className="mobile-toggle close-btn"
           onClick={() => setIsOpen(false)}
@@ -132,18 +126,18 @@ export default function Navbar() {
 
         <div className="mobile-menu-content">
           <motion.div className="mobile-links-list" variants={linkWrapperVariants}>
-            <MobileLink to="/" text={content.nav.home} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
-            <MobileLink to="/trial-booking" text={content.nav.trial} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
-            <MobileLink to="/sports-overview" text={content.nav.sports} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
-            <MobileLink to="/about" text={content.nav.about} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
-            <MobileLink to="/contact" text={content.nav.contact} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
+            <MobileLink to="/" text={getText('nav.home')} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
+            <MobileLink to="/trial-booking" text={getText('nav.trial')} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
+            <MobileLink to="/sports-overview" text={getText('nav.sports')} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
+            <MobileLink to="/about" text={getText('nav.about')} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
+            <MobileLink to="/contact" text={getText('nav.contact')} setIsOpen={setIsOpen} currentPath={location.pathname} variants={linkItemVariants} />
 
             <motion.div variants={linkItemVariants} className="mobile-divider" />
 
             <motion.div variants={linkItemVariants}>
               <motion.button onClick={toggleLanguage} className="mobile-lang-btn">
                 <Globe size={24} />
-                <span>{content.nav.switchLang}</span>
+                <span>{getText('nav.switchLang')}</span>
               </motion.button>
             </motion.div>
           </motion.div>
@@ -153,7 +147,6 @@ export default function Navbar() {
   );
 }
 
-// --- DESKTOP LINK COMPONENT ---
 function DesktopLink({ to, text, activePath }) {
   const isActive = activePath === to;
 
@@ -167,7 +160,6 @@ function DesktopLink({ to, text, activePath }) {
         {text}
       </motion.span>
 
-      {/* Sliding Underline */}
       {isActive && (
         <motion.div
           className="active-indicator"
@@ -179,7 +171,6 @@ function DesktopLink({ to, text, activePath }) {
   );
 }
 
-// --- MOBILE LINK COMPONENT ---
 function MobileLink({ to, text, setIsOpen, currentPath, variants }) {
   const isActive = currentPath === to;
   return (

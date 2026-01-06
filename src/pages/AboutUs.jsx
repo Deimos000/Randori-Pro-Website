@@ -6,20 +6,23 @@ import './AboutUs.css';
 
 const AboutUs = () => {
     const navigate = useNavigate();
-    const { content } = useText();
+    const { content, getText, trackClick } = useText();
+
     // Use first keyword as default
-    const [currentHeader, setCurrentHeader] = useState(content.aboutUs.heroKeywords[0]);
+    const [currentHeader, setCurrentHeader] = useState(content.aboutUs?.heroKeywords?.[0] || 'ABOUT US');
     const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: typeof window !== 'undefined' ? window.innerWidth : 1200,
+        height: typeof window !== 'undefined' ? window.innerHeight : 800,
     });
 
     const sectionsRef = useRef([]);
 
     // Update currentHeader if language changes
     useEffect(() => {
-        setCurrentHeader(content.aboutUs.heroKeywords[0]);
-    }, [content.aboutUs.heroKeywords]);
+        if (content.aboutUs?.heroKeywords?.[0]) {
+            setCurrentHeader(content.aboutUs.heroKeywords[0]);
+        }
+    }, [content.aboutUs?.heroKeywords]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -36,7 +39,7 @@ const AboutUs = () => {
     useEffect(() => {
         const observerOptions = {
             root: null,
-            rootMargin: '-40% 0px -40% 0px', // Trigger when section is in the middle 20%
+            rootMargin: '-40% 0px -40% 0px',
             threshold: 0,
         };
 
@@ -62,7 +65,7 @@ const AboutUs = () => {
                 if (section) observer.unobserve(section);
             });
         };
-    }, [content.aboutUs.heroKeywords]); // Re-run if keywords change
+    }, [content.aboutUs?.heroKeywords]);
 
     const addToRefs = (el) => {
         if (el && !sectionsRef.current.includes(el)) {
@@ -73,16 +76,12 @@ const AboutUs = () => {
     const [isExploded, setIsExploded] = useState(false);
     const particleHeaderRef = useRef(null);
 
-    // Scroll Logic to detect if particles are behind a card
     useEffect(() => {
         const handleScroll = () => {
             if (!particleHeaderRef.current) return;
 
-            // Define the "Particle Zone" - roughly where the text is.
-            // Based on properties passed to ParticleHero: textPosition is { x: 50, y: 30 }
-            // So it's at 30% of the viewport height.
             const particleZoneY = window.innerHeight * 0.3;
-            const particleZoneHeight = 100; // Approx height of text
+            const particleZoneHeight = 100;
 
             let covered = false;
 
@@ -91,8 +90,6 @@ const AboutUs = () => {
                 const card = section.querySelector('.glass-card');
                 if (card) {
                     const rect = card.getBoundingClientRect();
-                    // Check if the card overlaps with the particle zone
-                    // Card top is above the bottom of zone AND Card bottom is below the top of zone
                     if (rect.top < (particleZoneY + particleZoneHeight) && rect.bottom > particleZoneY) {
                         covered = true;
                     }
@@ -103,11 +100,21 @@ const AboutUs = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        // Initial check
         handleScroll();
 
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [windowSize]); // Re-calc on resize
+    }, [windowSize]);
+
+    // Handle CTA click with A/B tracking
+    const handleCTAClick = () => {
+        trackClick('aboutUs.cta.button');
+        navigate('/trial-booking');
+    };
+
+    const heroKeywords = content.aboutUs?.heroKeywords || ['ABOUT US', 'OUR PRINCIPLES', 'OUR TEAM', 'YOUR BENEFITS'];
+    const principles = content.aboutUs?.principles || [];
+    const team = content.aboutUs?.team || [];
+    const advantagesList = content.aboutUs?.advantagesList || [];
 
     return (
         <div className="about-us-page">
@@ -117,8 +124,8 @@ const AboutUs = () => {
                     text={currentHeader}
                     width={windowSize.width}
                     height={windowSize.height}
-                    textPosition={{ x: 50, y: 30 }} // Position text in the upper third
-                    precomputeTexts={content.aboutUs.heroKeywords}
+                    textPosition={{ x: 50, y: 30 }}
+                    precomputeTexts={heroKeywords}
                     isExploded={isExploded}
                 />
             </div>
@@ -127,34 +134,30 @@ const AboutUs = () => {
             <div className="content-scroll-container">
 
                 {/* Intro Section */}
-                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[0]}>
+                <section ref={addToRefs} className="content-section" data-title={heroKeywords[0]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card">
-                        <h2>{content.aboutUs.subHeading}</h2>
-                        <p>
-                            {content.aboutUs.intro}
-                        </p>
+                        <h2>{getText('aboutUs.subHeading')}</h2>
+                        <p>{getText('aboutUs.intro')}</p>
                         <div className="grid-features">
                             <div className="feature-item">
-                                <h3>{content.aboutUs.missionTitle}</h3>
-                                <p>{content.aboutUs.missionText}</p>
+                                <h3>{getText('aboutUs.missionTitle')}</h3>
+                                <p>{getText('aboutUs.missionText')}</p>
                             </div>
                             <div className="feature-item">
-                                <h3>{content.aboutUs.promiseTitle}</h3>
-                                <p>{content.aboutUs.promiseText}</p>
+                                <h3>{getText('aboutUs.promiseTitle')}</h3>
+                                <p>{getText('aboutUs.promiseText')}</p>
                             </div>
                         </div>
-                        <p className="history-text">
-                            {content.aboutUs.history}
-                        </p>
+                        <p className="history-text">{getText('aboutUs.history')}</p>
                     </div>
                 </section>
 
                 {/* Principles Section */}
-                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[1]}>
+                <section ref={addToRefs} className="content-section" data-title={heroKeywords[1]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card principles-grid">
-                        {content.aboutUs.principles.map((principle, idx) => (
+                        {principles.map((principle, idx) => (
                             <div key={idx} className="principle-card">
                                 <h3>{principle.title}</h3>
                                 <p>{principle.text}</p>
@@ -164,12 +167,12 @@ const AboutUs = () => {
                 </section>
 
                 {/* Team Section */}
-                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[2]}>
+                <section ref={addToRefs} className="content-section" data-title={heroKeywords[2]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card team-container">
-                        <h2>{content.aboutUs.teamTitle}</h2>
+                        <h2>{getText('aboutUs.teamTitle')}</h2>
                         <div className="team-grid">
-                            {content.aboutUs.team.map((member, idx) => (
+                            {team.map((member, idx) => (
                                 <div key={idx} className="team-member-card">
                                     <div className="member-image-wrapper">
                                         <img src={member.image} alt={member.name} className="member-image" />
@@ -187,21 +190,22 @@ const AboutUs = () => {
                 </section>
 
                 {/* Advantages Section */}
-                <section ref={addToRefs} className="content-section" data-title={content.aboutUs.heroKeywords[3]}>
+                <section ref={addToRefs} className="content-section" data-title={heroKeywords[3]}>
                     <div className="spacer-top"></div>
                     <div className="glass-card advantages-layout">
                         <ul className="advantages-list">
-                            {content.aboutUs.advantagesList.map((adv, idx) => (
+                            {advantagesList.map((adv, idx) => (
                                 <li key={idx}>
                                     <strong>{adv.bold}</strong>{adv.text}
                                 </li>
                             ))}
                         </ul>
                         <div className="cta-box">
-                            <h3>{content.aboutUs.cta.title}</h3>
-                            <p>{content.aboutUs.cta.text}</p>
-                            <button className="cta-button" onClick={() => navigate('/trial-booking')}>
-                                {content.aboutUs.cta.button}
+                            {/* A/B testable CTA section */}
+                            <h3>{getText('aboutUs.cta.title')}</h3>
+                            <p>{getText('aboutUs.cta.text')}</p>
+                            <button className="cta-button" onClick={handleCTAClick}>
+                                {getText('aboutUs.cta.button')}
                             </button>
                         </div>
                     </div>

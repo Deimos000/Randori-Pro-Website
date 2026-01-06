@@ -31,7 +31,7 @@ const trainersData = Object.keys(imagesGlob).map((filePath, index) => {
 // ==========================================
 
 const Trainers = () => {
-  const { content } = useText();
+  const { getText } = useText();
   const targetRef = useRef(null);
   const cardsContainerRef = useRef(null);
   const [scrollRange, setScrollRange] = useState(0);
@@ -42,10 +42,7 @@ const Trainers = () => {
       const calculateWidth = () => {
         const containerWidth = cardsContainerRef.current.scrollWidth;
         const windowWidth = window.innerWidth;
-        // The distance we need to move is the overflowing width
-        // We add a little buffer (e.g., 5vw) so the last image isn't glued to the edge
         const distance = containerWidth - windowWidth;
-        // Ensure we don't scroll if content fits on screen
         setScrollRange(distance > 0 ? distance : 0);
       };
 
@@ -67,12 +64,9 @@ const Trainers = () => {
     <section ref={targetRef} className="trainers-section">
       <div className="trainers-sticky-wrapper">
 
-        <h2 className="trainers-header">{content.trainers.title}</h2>
+        {/* A/B testable title */}
+        <h2 className="trainers-header">{getText('trainers.title')}</h2>
 
-        {/* 
-           We attach the ref here to measure width.
-           We apply the 'x' transform to move it left.
-        */}
         <motion.div
           ref={cardsContainerRef}
           style={{ x }}
@@ -99,7 +93,6 @@ const TrainerCard = ({ trainer }) => {
   return (
     <motion.div
       className="trainer-card"
-      // Animation Logic
       initial={{ scale: 0.8, opacity: 0.5, filter: "blur(5px)" }}
       whileInView={{
         scale: 1,
@@ -107,7 +100,7 @@ const TrainerCard = ({ trainer }) => {
         filter: "blur(0px)",
         transition: { duration: 0.5, ease: "easeOut" }
       }}
-      viewport={{ amount: 0.6, once: false }} // 0.6 means animation triggers when 60% of card is visible
+      viewport={{ amount: 0.6, once: false }}
     >
       <img
         src={trainer.img}

@@ -13,6 +13,9 @@ import TrialPage from './pages/TrialPage'; // The Booking Form
 import SchoolSportConnect from './pages/SchoolSportConnect'; // <--- NEW: The 20/80 Overview Page
 import AboutUs from './pages/AboutUs';
 
+// A/B Testing Dev Panel (only shows in dev mode or with ?ab_debug=1)
+import ABDevPanel from './utils/ABDevPanel';
+
 // Import Global CSS
 import './styles/variables.css';
 import './styles/global.css';
@@ -44,6 +47,8 @@ function App() {
 
           </Routes>
         </Layout>
+        {/* A/B Testing Dev Panel - appears in bottom-right on localhost or with ?ab_debug=1 */}
+        <ABDevPanel />
       </BrowserRouter>
     </LanguageProvider>
   );

@@ -8,13 +8,11 @@ import './SchoolFinder.css';
 
 const API_BASE = 'https://admin-panel-319165681780.europe-west10.run.app/api';
 
-// --- HELPER: SLEEP FUNCTION ---
-// This creates a pause in the code execution
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const SchoolFinder = () => {
   const navigate = useNavigate();
-  const { content } = useText();
+  const { getText } = useText();
   const [schoolsData, setSchoolsData] = useState([]);
   const [activeDistrict, setActiveDistrict] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
@@ -24,7 +22,6 @@ const SchoolFinder = () => {
   const [isLoadingSchools, setIsLoadingSchools] = useState(true);
   const [searchKey, setSearchKey] = useState(0);
 
-  // --- 1. FETCH SCHOOLS ---
   useEffect(() => {
     const fetchSchools = async () => {
       try {
@@ -42,33 +39,26 @@ const SchoolFinder = () => {
     fetchSchools();
   }, []);
 
-  // --- 2. "POLITE" ROUTING ALGORITHM ---
   const findBestSchool = async (userLoc) => {
     if (schoolsData.length === 0) return;
 
     setIsCalculating(true);
     const userPoint = L.latLng(userLoc.lat, userLoc.lng);
 
-    // STEP A: Use Math to find Top 3 candidates (Instant, no API calls)
-    // We don't want to check 100 schools, just the 3 physically closest ones.
     const topCandidates = schoolsData
       .map(school => ({
         ...school,
         rawDist: userPoint.distanceTo([school.lat, school.lng])
       }))
       .sort((a, b) => a.rawDist - b.rawDist)
-      .slice(0, 3); // ONLY CHECK TOP 3
+      .slice(0, 3);
 
     let bestCandidate = null;
     let shortestDuration = Infinity;
 
-    // STEP B: Check the Top 3 one by one with a pause
     for (const school of topCandidates) {
       try {
-        // 1. Construct simple 1-to-1 URL (User -> School)
-        // using 'walking' profile
         const url = `https://router.project-osrm.org/route/v1/walking/${userLoc.lng},${userLoc.lat};${school.lng},${school.lat}?overview=false`;
-
         const response = await fetch(url);
         const data = await response.json();
 
@@ -79,26 +69,23 @@ const SchoolFinder = () => {
             shortestDuration = durationSeconds;
             bestCandidate = {
               ...school,
-              realDuration: (durationSeconds / 60).toFixed(0), // Convert to minutes
+              realDuration: (durationSeconds / 60).toFixed(0),
               realDistance: data.routes[0].distance
             };
           }
         }
 
-        // 2. THE PAUSE (Wait 800ms before next call to avoid blocking)
         await sleep(800);
-
       } catch (err) {
         console.warn(`Skipping school ${school.name} due to error`, err);
       }
     }
 
-    // Fallback: If API failed for all, use the math-closest one
     if (!bestCandidate) {
       const mathWinner = topCandidates[0];
       bestCandidate = {
         ...mathWinner,
-        realDuration: Math.ceil((mathWinner.rawDist * 1.3) / 83), // Estimate
+        realDuration: Math.ceil((mathWinner.rawDist * 1.3) / 83),
         realDistance: mathWinner.rawDist
       };
     }
@@ -107,7 +94,6 @@ const SchoolFinder = () => {
     setIsCalculating(false);
   };
 
-  // --- HANDLERS ---
   const handleAddressFound = (location) => {
     if (!location) {
       handleGlobalClear();
@@ -138,12 +124,12 @@ const SchoolFinder = () => {
     });
   };
 
-  // --- RENDER ---
   return (
     <div className="finder-card">
       <div className="list-section">
         <div className="search-header">
-          <h3>{content.finder.title}</h3>
+          {/* A/B testable title */}
+          <h3>{getText('finder.title')}</h3>
           <div className="search-container">
             <AddressAutosuggest
               key={searchKey}
@@ -153,9 +139,8 @@ const SchoolFinder = () => {
         </div>
 
         <div className="scroll-container">
-          {isLoadingSchools && <div className="loading-message">{content.finder.loading}</div>}
+          {isLoadingSchools && <div className="loading-message">{getText('finder.loading')}</div>}
 
-          {/* RESULTS AREA */}
           {!isLoadingSchools && closestSchool && (
             <div
               className="closest-result"
@@ -163,13 +148,13 @@ const SchoolFinder = () => {
               style={{ cursor: 'pointer' }}
             >
               <div className="result-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h4 style={{ margin: 0 }}>🎯 {content.finder.bestRoute}</h4>
+                <h4 style={{ margin: 0 }}>🎯 {getText('finder.bestRoute')}</h4>
                 <button
                   type="button"
                   className="btn-clear"
                   onClick={(e) => { e.stopPropagation(); handleGlobalClear(e); }}
                 >
-                  ✕ {content.finder.clear}
+                  ✕ {getText('finder.clear')}
                 </button>
               </div>
 
@@ -177,15 +162,14 @@ const SchoolFinder = () => {
                 <h3>{closestSchool.name}</h3>
                 <p>{closestSchool.address}</p>
                 <div className="stats-badge">
-                  {/* Show calculation status or result */}
-                  <span>🚶 {closestSchool.realDuration} {content.finder.minWalk}</span>
+                  <span>🚶 {closestSchool.realDuration} {getText('finder.minWalk')}</span>
                 </div>
               </div>
             </div>
           )}
 
           <h4 className="list-title">
-            {activeDistrict ? `${content.finder.schoolsIn} ${activeDistrict}` : content.finder.allSchools}
+            {activeDistrict ? `${getText('finder.schoolsIn')} ${activeDistrict}` : getText('finder.allSchools')}
           </h4>
 
           <div className="school-grid">
@@ -217,8 +201,8 @@ const SchoolFinder = () => {
 
         {isCalculating && (
           <div className="map-loading-overlay">
-            {content.finder.calculating} <br />
-            <small>{content.finder.checkingCandidates}</small>
+            {getText('finder.calculating')} <br />
+            <small>{getText('finder.checkingCandidates')}</small>
           </div>
         )}
       </div>
